@@ -1,0 +1,591 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1479FEA1271D834A0082793B /* SwinetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FEA0271D834A0082793B /* SwinetApp.swift */; };
+		1479FEA3271D834A0082793B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FEA2271D834A0082793B /* ContentView.swift */; };
+		1479FEA5271D834C0082793B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1479FEA4271D834C0082793B /* Assets.xcassets */; };
+		1479FEA8271D834C0082793B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1479FEA7271D834C0082793B /* Preview Assets.xcassets */; };
+		1479FEB3271D834D0082793B /* SwinetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FEB2271D834D0082793B /* SwinetTests.swift */; };
+		1479FEBE271D834D0082793B /* SwinetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FEBD271D834D0082793B /* SwinetUITests.swift */; };
+		1479FECD271D844F0082793B /* Swinet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FECC271D844F0082793B /* Swinet.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1479FEAF271D834D0082793B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1479FE95271D83490082793B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1479FE9C271D83490082793B;
+			remoteInfo = Swinet;
+		};
+		1479FEBA271D834D0082793B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1479FE95271D83490082793B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1479FE9C271D83490082793B;
+			remoteInfo = Swinet;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1479FE9D271D83490082793B /* Swinet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swinet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1479FEA0271D834A0082793B /* SwinetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetApp.swift; sourceTree = "<group>"; };
+		1479FEA2271D834A0082793B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1479FEA4271D834C0082793B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1479FEA7271D834C0082793B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1479FEA9271D834C0082793B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1479FEAE271D834D0082793B /* SwinetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1479FEB2271D834D0082793B /* SwinetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetTests.swift; sourceTree = "<group>"; };
+		1479FEB4271D834D0082793B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1479FEB9271D834D0082793B /* SwinetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1479FEBD271D834D0082793B /* SwinetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetUITests.swift; sourceTree = "<group>"; };
+		1479FEBF271D834D0082793B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1479FECC271D844F0082793B /* Swinet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinet.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1479FE9A271D83490082793B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1479FEAB271D834D0082793B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1479FEB6271D834D0082793B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1479FE94271D83490082793B = {
+			isa = PBXGroup;
+			children = (
+				1479FECB271D83D90082793B /* Source */,
+				1479FE9F271D834A0082793B /* Swinet */,
+				1479FEB1271D834D0082793B /* SwinetTests */,
+				1479FEBC271D834D0082793B /* SwinetUITests */,
+				1479FE9E271D83490082793B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1479FE9E271D83490082793B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1479FE9D271D83490082793B /* Swinet.app */,
+				1479FEAE271D834D0082793B /* SwinetTests.xctest */,
+				1479FEB9271D834D0082793B /* SwinetUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1479FE9F271D834A0082793B /* Swinet */ = {
+			isa = PBXGroup;
+			children = (
+				1479FEA0271D834A0082793B /* SwinetApp.swift */,
+				1479FEA2271D834A0082793B /* ContentView.swift */,
+				1479FEA4271D834C0082793B /* Assets.xcassets */,
+				1479FEA9271D834C0082793B /* Info.plist */,
+				1479FEA6271D834C0082793B /* Preview Content */,
+			);
+			path = Swinet;
+			sourceTree = "<group>";
+		};
+		1479FEA6271D834C0082793B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1479FEA7271D834C0082793B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1479FEB1271D834D0082793B /* SwinetTests */ = {
+			isa = PBXGroup;
+			children = (
+				1479FEB2271D834D0082793B /* SwinetTests.swift */,
+				1479FEB4271D834D0082793B /* Info.plist */,
+			);
+			path = SwinetTests;
+			sourceTree = "<group>";
+		};
+		1479FEBC271D834D0082793B /* SwinetUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1479FEBD271D834D0082793B /* SwinetUITests.swift */,
+				1479FEBF271D834D0082793B /* Info.plist */,
+			);
+			path = SwinetUITests;
+			sourceTree = "<group>";
+		};
+		1479FECB271D83D90082793B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1479FECC271D844F0082793B /* Swinet.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1479FE9C271D83490082793B /* Swinet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1479FEC2271D834D0082793B /* Build configuration list for PBXNativeTarget "Swinet" */;
+			buildPhases = (
+				1479FE99271D83490082793B /* Sources */,
+				1479FE9A271D83490082793B /* Frameworks */,
+				1479FE9B271D83490082793B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Swinet;
+			productName = Swinet;
+			productReference = 1479FE9D271D83490082793B /* Swinet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1479FEAD271D834D0082793B /* SwinetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1479FEC5271D834D0082793B /* Build configuration list for PBXNativeTarget "SwinetTests" */;
+			buildPhases = (
+				1479FEAA271D834D0082793B /* Sources */,
+				1479FEAB271D834D0082793B /* Frameworks */,
+				1479FEAC271D834D0082793B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1479FEB0271D834D0082793B /* PBXTargetDependency */,
+			);
+			name = SwinetTests;
+			productName = SwinetTests;
+			productReference = 1479FEAE271D834D0082793B /* SwinetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1479FEB8271D834D0082793B /* SwinetUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1479FEC8271D834D0082793B /* Build configuration list for PBXNativeTarget "SwinetUITests" */;
+			buildPhases = (
+				1479FEB5271D834D0082793B /* Sources */,
+				1479FEB6271D834D0082793B /* Frameworks */,
+				1479FEB7271D834D0082793B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1479FEBB271D834D0082793B /* PBXTargetDependency */,
+			);
+			name = SwinetUITests;
+			productName = SwinetUITests;
+			productReference = 1479FEB9271D834D0082793B /* SwinetUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1479FE95271D83490082793B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					1479FE9C271D83490082793B = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					1479FEAD271D834D0082793B = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 1479FE9C271D83490082793B;
+					};
+					1479FEB8271D834D0082793B = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 1479FE9C271D83490082793B;
+					};
+				};
+			};
+			buildConfigurationList = 1479FE98271D83490082793B /* Build configuration list for PBXProject "Swinet" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1479FE94271D83490082793B;
+			productRefGroup = 1479FE9E271D83490082793B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1479FE9C271D83490082793B /* Swinet */,
+				1479FEAD271D834D0082793B /* SwinetTests */,
+				1479FEB8271D834D0082793B /* SwinetUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1479FE9B271D83490082793B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1479FEA8271D834C0082793B /* Preview Assets.xcassets in Resources */,
+				1479FEA5271D834C0082793B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1479FEAC271D834D0082793B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1479FEB7271D834D0082793B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1479FE99271D83490082793B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1479FEA3271D834A0082793B /* ContentView.swift in Sources */,
+				1479FEA1271D834A0082793B /* SwinetApp.swift in Sources */,
+				1479FECD271D844F0082793B /* Swinet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1479FEAA271D834D0082793B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1479FEB3271D834D0082793B /* SwinetTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1479FEB5271D834D0082793B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1479FEBE271D834D0082793B /* SwinetUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1479FEB0271D834D0082793B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1479FE9C271D83490082793B /* Swinet */;
+			targetProxy = 1479FEAF271D834D0082793B /* PBXContainerItemProxy */;
+		};
+		1479FEBB271D834D0082793B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1479FE9C271D83490082793B /* Swinet */;
+			targetProxy = 1479FEBA271D834D0082793B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1479FEC0271D834D0082793B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1479FEC1271D834D0082793B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1479FEC3271D834D0082793B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Swinet/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Swinet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.Swinet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1479FEC4271D834D0082793B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Swinet/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Swinet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.Swinet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1479FEC6271D834D0082793B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SwinetTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.SwinetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swinet.app/Swinet";
+			};
+			name = Debug;
+		};
+		1479FEC7271D834D0082793B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SwinetTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.SwinetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swinet.app/Swinet";
+			};
+			name = Release;
+		};
+		1479FEC9271D834D0082793B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SwinetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.SwinetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Swinet;
+			};
+			name = Debug;
+		};
+		1479FECA271D834D0082793B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SwinetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.SwinetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Swinet;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1479FE98271D83490082793B /* Build configuration list for PBXProject "Swinet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1479FEC0271D834D0082793B /* Debug */,
+				1479FEC1271D834D0082793B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1479FEC2271D834D0082793B /* Build configuration list for PBXNativeTarget "Swinet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1479FEC3271D834D0082793B /* Debug */,
+				1479FEC4271D834D0082793B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1479FEC5271D834D0082793B /* Build configuration list for PBXNativeTarget "SwinetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1479FEC6271D834D0082793B /* Debug */,
+				1479FEC7271D834D0082793B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1479FEC8271D834D0082793B /* Build configuration list for PBXNativeTarget "SwinetUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1479FEC9271D834D0082793B /* Debug */,
+				1479FECA271D834D0082793B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1479FE95271D83490082793B /* Project object */;
+}

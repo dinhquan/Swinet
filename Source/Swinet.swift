@@ -97,62 +97,36 @@ extension Swinet {
             self.requestError = requestError
         }
 
-        /*
-        func responseDecodable<T: Decodable>(_ type: T.Type) async throws -> T {
-            guard let request = request else {
-                throw(requestError!)
-            }
-            let (data, _) = try await URLSession.shared.data(for: request)
-            let decoder = JSONDecoder()
-            return try decoder.decode(type, from: data)
-        }
-         */
+        /// Public methods
 
-        func responseJSON(success: @escaping (_ result: [String: Any]) -> Void, failure: @escaping (_ error: Error) -> Void) {
-            guard let request = request else {
-                failure(requestError!)
-                return
-            }
-
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                guard let data = data else {
-                    failure(error!)
-                    return
-                }
-                do {
-                    guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-                        failure(NetworkError.invalidJSONResponse)
-                        return
-                    }
-                    success(json)
-                } catch {
-                    failure(error)
-                }
-            }
-
-            task.resume()
+        func responseData(success: @escaping (_ result: Data) -> Void,
+                          failure: @escaping (_ error: Error) -> Void) {
+            responseClosure(type: Data.self, converter: { $0 }, success: success, failure: failure)
         }
 
-        func responseDecodable<T: Decodable>(_ type: T.Type, success: @escaping (_ result: T) -> Void, failure: @escaping (_ error: Error) -> Void) {
-            guard let request = request else {
-                failure(requestError!)
-                return
-            }
+        func responseString(success: @escaping (_ result: String) -> Void,
+                            failure: @escaping (_ error: Error) -> Void) {
+            responseClosure(type: String.self, converter: {
+                String(decoding: $0, as: UTF8.self)
+            }, success: success, failure: failure)
+        }
 
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                guard let data = data else {
-                    failure(error!)
-                    return
+        func responseJSON(success: @escaping (_ result: [String: Any]) -> Void,
+                          failure: @escaping (_ error: Error) -> Void) {
+            responseClosure(type: [String: Any].self, converter: {
+                guard let json = try JSONSerialization.jsonObject(with: $0, options: []) as? [String: Any] else {
+                    throw NetworkError.invalidJSONResponse
                 }
-                do {
-                    let decodable = try JSONDecoder().decode(type, from: data)
-                    success(decodable)
-                } catch {
-                    failure(error)
-                }
-            }
+                return json
+            }, success: success, failure: failure)
+        }
 
-            task.resume()
+        func responseDecodable<T: Decodable>(_ type: T.Type,
+                                             success: @escaping (_ result: T) -> Void,
+                                             failure: @escaping (_ error: Error) -> Void) {
+            responseClosure(type: type, converter: {
+                try JSONDecoder().decode(T.self, from: $0)
+            }, success: success, failure: failure)
         }
 
         func responseData() -> AnyPublisher<Data, Error> {
@@ -160,14 +134,14 @@ extension Swinet {
         }
 
         func responseString() -> AnyPublisher<String, Error> {
-            responsePublisher(type: String.self) { data in
-                String(decoding: data, as: UTF8.self)
+            responsePublisher(type: String.self) {
+                String(decoding: $0, as: UTF8.self)
             }
         }
 
         func responseJSON() -> AnyPublisher<[String: Any], Error> {
-            responsePublisher(type: [String: Any].self) { data in
-                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
+            responsePublisher(type: [String: Any].self) {
+                guard let json = try JSONSerialization.jsonObject(with: $0, options: []) as? [String: Any] else {
                     throw NetworkError.invalidJSONResponse
                 }
                 return json
@@ -175,9 +149,38 @@ extension Swinet {
         }
 
         func responseDecodable<T: Decodable>(_ type: T.Type) -> AnyPublisher<T, Error> {
-            responsePublisher(type: type) { data in
-                try JSONDecoder().decode(T.self, from: data)
+            responsePublisher(type: type) {
+                try JSONDecoder().decode(T.self, from: $0)
             }
+        }
+
+        /// Private methods
+
+        private func responseClosure<T>(type: T.Type,
+                                        converter: @escaping (Data) throws -> T,
+                                        success: @escaping (_ result: T) -> Void,
+                                        failure: @escaping (_ error: Error) -> Void) {
+
+            guard let request = request else {
+                failure(requestError!)
+                return
+            }
+
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                guard let data = data else {
+                    failure(error!)
+                    return
+                }
+
+                do {
+                    let result = try converter(data)
+                    success(result)
+                } catch {
+                    failure(error)
+                }
+            }
+
+            task.resume()
         }
 
         private func responsePublisher<T>(type: T.Type, converter: @escaping (Data) throws -> T) -> AnyPublisher<T, Error>  {
@@ -193,6 +196,17 @@ extension Swinet {
                 .receive(on: DispatchQueue.main)
                 .eraseToAnyPublisher()
         }
+
+        /*
+        func responseDecodable<T: Decodable>(_ type: T.Type) async throws -> T {
+            guard let request = request else {
+                throw(requestError!)
+            }
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let decoder = JSONDecoder()
+            return try decoder.decode(type, from: data)
+        }
+         */
     }
 }
 

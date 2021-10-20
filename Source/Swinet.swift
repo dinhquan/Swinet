@@ -216,21 +216,24 @@ extension Swinet {
 
         /// Public methods
 
-        func responseData(success: @escaping (_ result: Data) -> Void,
+        func responseData(on queue: DispatchQueue = DispatchQueue.main,
+                          success: @escaping (_ result: Data) -> Void,
                           failure: @escaping (_ error: Error) -> Void) {
-            responseClosure(type: Data.self, converter: { $0 }, success: success, failure: failure)
+            responseClosure(on: queue, type: Data.self, converter: { $0 }, success: success, failure: failure)
         }
 
-        func responseString(success: @escaping (_ result: String) -> Void,
+        func responseString(on queue: DispatchQueue = DispatchQueue.main,
+                            success: @escaping (_ result: String) -> Void,
                             failure: @escaping (_ error: Error) -> Void) {
-            responseClosure(type: String.self, converter: {
+            responseClosure(on: queue, type: String.self, converter: {
                 String(decoding: $0, as: UTF8.self)
             }, success: success, failure: failure)
         }
 
-        func responseJSON(success: @escaping (_ result: [String: Any]) -> Void,
+        func responseJSON(on queue: DispatchQueue = DispatchQueue.main,
+                          success: @escaping (_ result: [String: Any]) -> Void,
                           failure: @escaping (_ error: Error) -> Void) {
-            responseClosure(type: [String: Any].self, converter: {
+            responseClosure(on: queue, type: [String: Any].self, converter: {
                 guard let json = try JSONSerialization.jsonObject(with: $0, options: []) as? [String: Any] else {
                     throw NetworkError.invalidJSONResponse
                 }
@@ -238,26 +241,27 @@ extension Swinet {
             }, success: success, failure: failure)
         }
 
-        func responseDecodable<T: Decodable>(_ type: T.Type,
+        func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
+                                             _ type: T.Type,
                                              success: @escaping (_ result: T) -> Void,
                                              failure: @escaping (_ error: Error) -> Void) {
-            responseClosure(type: type, converter: {
+            responseClosure(on: queue, type: type, converter: {
                 try JSONDecoder().decode(T.self, from: $0)
             }, success: success, failure: failure)
         }
 
-        func responseData() -> AnyPublisher<Data, Error> {
-            responsePublisher(type: Data.self, converter: { $0 })
+        func responseData(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Data, Error> {
+            responsePublisher(on: queue, type: Data.self, converter: { $0 })
         }
 
-        func responseString() -> AnyPublisher<String, Error> {
-            responsePublisher(type: String.self) {
+        func responseString(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<String, Error> {
+            responsePublisher(on: queue, type: String.self) {
                 String(decoding: $0, as: UTF8.self)
             }
         }
 
-        func responseJSON() -> AnyPublisher<[String: Any], Error> {
-            responsePublisher(type: [String: Any].self) {
+        func responseJSON(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<[String: Any], Error> {
+            responsePublisher(on: queue, type: [String: Any].self) {
                 guard let json = try JSONSerialization.jsonObject(with: $0, options: []) as? [String: Any] else {
                     throw NetworkError.invalidJSONResponse
                 }
@@ -265,15 +269,17 @@ extension Swinet {
             }
         }
 
-        func responseDecodable<T: Decodable>(_ type: T.Type) -> AnyPublisher<T, Error> {
-            responsePublisher(type: type) {
+        func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
+                                             _ type: T.Type) -> AnyPublisher<T, Error> {
+            responsePublisher(on: queue, type: type) {
                 try JSONDecoder().decode(T.self, from: $0)
             }
         }
 
         /// Private methods
 
-        private func responseClosure<T>(type: T.Type,
+        private func responseClosure<T>(on queue: DispatchQueue,
+                                        type: T.Type,
                                         converter: @escaping (Data) throws -> T,
                                         success: @escaping (_ result: T) -> Void,
                                         failure: @escaping (_ error: Error) -> Void) {
@@ -285,22 +291,30 @@ extension Swinet {
 
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 guard let data = data else {
-                    failure(error!)
+                    queue.async {
+                        failure(error!)
+                    }
                     return
                 }
 
                 do {
                     let result = try converter(data)
-                    success(result)
+                    queue.async {
+                        success(result)
+                    }
                 } catch {
-                    failure(error)
+                    queue.async {
+                        failure(error)
+                    }
                 }
             }
 
             task.resume()
         }
 
-        private func responsePublisher<T>(type: T.Type, converter: @escaping (Data) throws -> T) -> AnyPublisher<T, Error>  {
+        private func responsePublisher<T>(on queue: DispatchQueue,
+                                          type: T.Type,
+                                          converter: @escaping (Data) throws -> T) -> AnyPublisher<T, Error>  {
             guard let request = request else {
                 return Fail(error: requestError!)
                     .eraseToAnyPublisher()
@@ -310,7 +324,7 @@ extension Swinet {
                 .tryMap { result in
                     return try converter(result.data)
                 }
-                .receive(on: DispatchQueue.main)
+                .receive(on: queue)
                 .eraseToAnyPublisher()
         }
 

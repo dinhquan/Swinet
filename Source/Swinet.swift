@@ -30,6 +30,66 @@ extension Swinet {
         case invalidJSONResponse
         case decodeFailure
     }
+
+    enum RequestBody {
+        case json([String: Any])
+        case data(Data)
+        case formData(FormData)
+
+        func toData() throws -> Data? {
+            switch self {
+            case .json(let json):
+                return try JSONSerialization.data(withJSONObject: json, options: [])
+            case .data(let data):
+                return data
+            case .formData(let formData):
+                return try formData.toData()
+            }
+        }
+    }
+
+    struct FormData {
+        enum Value {
+            case string(String)
+            case file(url: URL)
+        }
+
+        private var values: [String: Value] = [:]
+
+        init(_ values: [String: Value]) {
+            self.values = values
+        }
+
+        mutating func append(key: String, value: String) {
+            values[key] = .string(value)
+        }
+
+        mutating func append(key: String, fileUrl: URL) {
+            values[key] = .file(url: fileUrl)
+        }
+
+        func toData() throws -> Data? {
+            let boundary = "Boundary-\(UUID().uuidString)"
+            var body = ""
+            for (key, value) in values {
+                body += "--\(boundary)\r\n"
+                body += "Content-Disposition:form-data; name=\"\(key)\""
+                switch value {
+                case .string(let string):
+                    body += "\r\n\r\n\(string)\r\n"
+                case .file(let url):
+                    let fileData = try Data(contentsOf: url)
+                    let fileContent = String(data: fileData, encoding: .utf8) ?? ""
+                    let fileName = url.lastPathComponent.isEmpty ? url.absoluteString : url.lastPathComponent
+                    body += "; filename=\"\(fileName)\"\r\n"
+                      + "Content-Type: \"content-type header\"\r\n\r\n\(fileContent)\r\n"
+                }
+            }
+            body += "--\(boundary)--\r\n";
+
+            return body.data(using: .utf8)
+        }
+    }
 }
 
 /// Config
@@ -52,6 +112,23 @@ extension Swinet {
                         parameters: [String: String]? = nil,
                         body: [String: Any]? = nil,
                         headers: [String: String] = config.headers) -> Request {
+        var requestBody: RequestBody? = nil
+        if let body = body {
+            requestBody = .json(body)
+        }
+        return request(url,
+                       method: method,
+                       parameters: parameters,
+                       body: requestBody,
+                       headers: headers)
+    }
+
+    static func request(_ url: String,
+                        method: HttpMethod = .get,
+                        parameters: [String: String]? = nil,
+                        body: RequestBody? = nil,
+                        headers: [String: String] = config.headers) -> Request {
+        /// Build url with params
         var urlString = url
 
         if let params = parameters {
@@ -65,18 +142,21 @@ extension Swinet {
         guard let fullUrl = URL(string: urlString) else {
             return Request(request: nil, requestError: .invalidUrl)
         }
+
+        /// Create URLRequest
         var request = URLRequest(url: fullUrl)
         request.httpMethod = method.rawValue
         request.timeoutInterval = config.timeOutInterval
 
+        /// Build headers
         for (key, value) in headers {
             request.addValue(value, forHTTPHeaderField: key)
         }
 
+        /// Build body
         if let body = body {
             do {
-                let data = try JSONSerialization.data(withJSONObject: body, options: [])
-                request.httpBody = data
+                request.httpBody = try body.toData()
             } catch {
                 return Request(request: request, requestError: .invalidBody)
             }

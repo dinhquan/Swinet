@@ -35,6 +35,7 @@ extension Swinet {
         case json([String: Any])
         case data(Data)
         case formData(FormData)
+        case graphQL(query: String, variables: [String: Any]?)
 
         func toData() throws -> Data? {
             switch self {
@@ -44,7 +45,21 @@ extension Swinet {
                 return data
             case .formData(let formData):
                 return try formData.toData()
+            case .graphQL(let query, let variables):
+                return try dataFromGraphQL(query: query, variables: variables)
             }
+        }
+
+        private func dataFromGraphQL(query: String, variables: [String: Any]?) throws -> Data {
+            var params = ["query": query]
+            if let variables = variables,
+               let variablesData = try? JSONSerialization.data(withJSONObject: variables, options: []),
+               let variablesString = String(data: variablesData, encoding: .utf8) {
+                params["variables"] = variablesString
+            }
+
+            let data = try JSONSerialization.data(withJSONObject: params, options: [])
+            return data
         }
     }
 
@@ -120,6 +135,28 @@ extension Swinet {
                        method: method,
                        parameters: parameters,
                        body: requestBody,
+                       headers: headers)
+    }
+
+    static func formDataRequest(_ url: String,
+                                method: HttpMethod = .get,
+                                parameters: [String: String]? = nil,
+                                formData: FormData,
+                                headers: [String: String] = config.headers) -> Request {
+        return request(url,
+                       method: method,
+                       parameters: parameters,
+                       body: .formData(formData),
+                       headers: headers)
+    }
+
+    static func graphQLRequest(_ url: String,
+                                query: String,
+                                variables: [String: Any]?,
+                                headers: [String: String] = config.headers) -> Request {
+        return request(url,
+                       method: .post,
+                       body: .graphQL(query: query, variables: variables),
                        headers: headers)
     }
 
@@ -287,21 +324,5 @@ extension Swinet {
             return try decoder.decode(type, from: data)
         }
          */
-    }
-}
-
-/// Cache
-extension Swinet {
-    struct Cacher {
-        static func cache(url: String, data: Data) {
-            let string = String(data: data, encoding: .utf8)
-            UserDefaults.standard.set(string, forKey: url)
-        }
-
-        static func get(url: String) -> Data? {
-            guard let string = UserDefaults.standard.string(forKey: url) else { return nil }
-            guard let data = string.data(using: .utf8) else { return nil }
-            return data
-        }
     }
 }

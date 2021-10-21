@@ -7,12 +7,29 @@
 
 import Foundation
 
+struct ResponseModel: Decodable {
+
+}
+
 class SwinetExamples: ObservableObject {
 
-    func get() {
+    func simpleGet() {
         Swinet.request("https://httpbin.org/get")
-            .responseData { data in
-                print(data)
+            .responseJSON { json in
+                print(json)
             }
     }
+
+    func errorHandling() {
+        Swinet.request("https://httpbin.org/get")
+            .responseDecodable(ResponseModel.self, success: { model in
+                print(model)
+            }, failure: { error in
+                print(error.errorDescription)
+                print("\(error.statusCode)")
+                print("\(error.data)")
+            })
+    }
+
+
 }

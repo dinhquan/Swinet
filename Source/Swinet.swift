@@ -25,12 +25,47 @@ extension Swinet {
     }
 
     enum NetworkError: Error {
-        case invalidUrl
-        case invalidBody
-        case invalidJSONResponse
-        case decodeFailure(_ error: Error)
-        case responseFailure(_ error: Error, _ data: Data?)
         case unknown
+        case invalidUrl(_ url: String)
+        case invalidBody(_ error: Error)
+        case invalidJSONResponse(_ error: Error)
+        case decodeFailure(_ error: Error)
+        case responseFailure(_ error: Error, _ response: URLResponse?, _ data: Data?)
+
+        var errorDescription: String {
+            switch self {
+            case .invalidUrl(let url):
+                return "Invalid url: \(url)"
+            case .decodeFailure(let error):
+                return error.localizedDescription
+            case .responseFailure(let error, _, _):
+                return error.localizedDescription
+            case .invalidBody(let error):
+                return error.localizedDescription
+            case .invalidJSONResponse(let error):
+                return error.localizedDescription
+            default:
+                return localizedDescription
+            }
+        }
+
+        var statusCode: Int? {
+            switch self {
+            case .responseFailure(_, let response, _):
+                return (response as? HTTPURLResponse)?.statusCode
+            default:
+                return nil
+            }
+        }
+
+        var data: Data? {
+            switch self {
+            case .responseFailure(_, _, let data):
+                return data
+            default:
+                return nil
+            }
+        }
     }
 
     enum RequestBody {
@@ -176,7 +211,7 @@ extension Swinet {
         }
 
         guard let fullUrl = URL(string: urlString) else {
-            return Request(request: nil, requestError: .invalidUrl)
+            return Request(request: nil, requestError: .invalidUrl(url))
         }
 
         /// Create URLRequest
@@ -193,7 +228,7 @@ extension Swinet {
         do {
             request.httpBody = try body.toData()
         } catch {
-            return Request(request: request, requestError: .invalidBody)
+            return Request(request: request, requestError: .invalidBody(error))
         }
 
         return Request(request: request, requestError: nil)
@@ -232,15 +267,34 @@ extension Swinet {
             }, success: success, failure: failure)
         }
 
+        func responseString(on queue: DispatchQueue = DispatchQueue.main,
+                            success: @escaping (_ result: String) -> Void) {
+            responseClosure(on: queue, type: String.self, converter: {
+                String(decoding: $0, as: UTF8.self)
+            }, success: success, failure: nil)
+        }
+
         func responseJSON(on queue: DispatchQueue = DispatchQueue.main,
-                          success: @escaping (_ result: [String: Any]) -> Void,
+                          success: @escaping (_ result: Any) -> Void,
                           failure: @escaping (_ error: NetworkError) -> Void) {
-            responseClosure(on: queue, type: [String: Any].self, converter: {
-                guard let json = try JSONSerialization.jsonObject(with: $0, options: []) as? [String: Any] else {
-                    throw NetworkError.invalidJSONResponse
+            responseClosure(on: queue, type: Any.self, converter: {
+                do {
+                    return try JSONSerialization.jsonObject(with: $0, options: [])
+                } catch {
+                    throw NetworkError.invalidJSONResponse(error)
                 }
-                return json
             }, success: success, failure: failure)
+        }
+
+        func responseJSON(on queue: DispatchQueue = DispatchQueue.main,
+                          success: @escaping (_ result: Any) -> Void) {
+            responseClosure(on: queue, type: Any.self, converter: {
+                do {
+                    return try JSONSerialization.jsonObject(with: $0, options: [])
+                } catch {
+                    throw NetworkError.invalidJSONResponse(error)
+                }
+            }, success: success, failure: nil)
         }
 
         func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
@@ -254,6 +308,18 @@ extension Swinet {
                     throw NetworkError.decodeFailure(error)
                 }
             }, success: success, failure: failure)
+        }
+
+        func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
+                                             _ type: T.Type,
+                                             success: @escaping (_ result: T) -> Void) {
+            responseClosure(on: queue, type: type, converter: {
+                do {
+                    return try JSONDecoder().decode(T.self, from: $0)
+                } catch {
+                    throw NetworkError.decodeFailure(error)
+                }
+            }, success: success, failure: nil)
         }
 
         func responseFile(on queue: DispatchQueue = DispatchQueue.main,
@@ -272,6 +338,20 @@ extension Swinet {
                                 progress: progress)
         }
 
+        func responseFile(on queue: DispatchQueue = DispatchQueue.main,
+                          progress: ((_ progress: Double) -> Void)?,
+                          success: @escaping (_ url: URL) -> Void) {
+            guard let request = request else {
+                return
+            }
+
+            let downloader = Downloader()
+            downloader.download(request,
+                                success: success,
+                                failure: nil,
+                                progress: progress)
+        }
+
         func responseData(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Data, Error> {
             responsePublisher(on: queue, type: Data.self, converter: { $0 })
         }
@@ -282,12 +362,13 @@ extension Swinet {
             }
         }
 
-        func responseJSON(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<[String: Any], Error> {
-            responsePublisher(on: queue, type: [String: Any].self) {
-                guard let json = try JSONSerialization.jsonObject(with: $0, options: []) as? [String: Any] else {
-                    throw NetworkError.invalidJSONResponse
+        func responseJSON(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Any, Error> {
+            responsePublisher(on: queue, type: Any.self) {
+                do {
+                    return try JSONSerialization.jsonObject(with: $0, options: [])
+                } catch {
+                    throw NetworkError.invalidJSONResponse(error)
                 }
-                return json
             }
         }
 
@@ -312,15 +393,15 @@ extension Swinet {
             }
 
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if error != nil {
+                if let error = error {
                     queue.async {
-                        failure?(.responseFailure(error!, data))
+                        failure?(.responseFailure(error, response, data))
                     }
                     return
                 }
                 guard let data = data else {
                     queue.async {
-                        failure?(.responseFailure(error ?? NetworkError.unknown, data))
+                        failure?(.responseFailure(error ?? NetworkError.unknown, response, data))
                     }
                     return
                 }
@@ -383,7 +464,7 @@ extension Swinet {
 
             let task = session.downloadTask(with: request) { url, response, error in
                 guard let url = url else {
-                    failure?(.responseFailure(error ?? NetworkError.unknown, nil))
+                    failure?(.responseFailure(error ?? NetworkError.unknown, response, nil))
                     return
                 }
                 success(url)

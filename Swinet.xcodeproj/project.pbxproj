@@ -14,6 +14,7 @@
 		1479FEB3271D834D0082793B /* SwinetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FEB2271D834D0082793B /* SwinetTests.swift */; };
 		1479FEBE271D834D0082793B /* SwinetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FEBD271D834D0082793B /* SwinetUITests.swift */; };
 		1479FECD271D844F0082793B /* Swinet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FECC271D844F0082793B /* Swinet.swift */; };
+		1479FED0272123AA0082793B /* SwinetExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FECF272123AA0082793B /* SwinetExamples.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		1479FEBD271D834D0082793B /* SwinetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetUITests.swift; sourceTree = "<group>"; };
 		1479FEBF271D834D0082793B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1479FECC271D844F0082793B /* Swinet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinet.swift; sourceTree = "<group>"; };
+		1479FECF272123AA0082793B /* SwinetExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetExamples.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			children = (
 				1479FEA0271D834A0082793B /* SwinetApp.swift */,
 				1479FEA2271D834A0082793B /* ContentView.swift */,
+				1479FECF272123AA0082793B /* SwinetExamples.swift */,
 				1479FEA4271D834C0082793B /* Assets.xcassets */,
 				1479FEA9271D834C0082793B /* Info.plist */,
 				1479FEA6271D834C0082793B /* Preview Content */,
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1479FED0272123AA0082793B /* SwinetExamples.swift in Sources */,
 				1479FEA3271D834A0082793B /* ContentView.swift in Sources */,
 				1479FEA1271D834A0082793B /* SwinetApp.swift in Sources */,
 				1479FECD271D844F0082793B /* Swinet.swift in Sources */,

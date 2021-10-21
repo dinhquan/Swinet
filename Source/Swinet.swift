@@ -34,7 +34,7 @@ extension Swinet {
     }
 
     enum RequestBody {
-        case json([String: Any])
+        case json([String: Any]?)
         case data(Data)
         case formData(FormData)
         case graphQL(query: String, variables: [String: Any]?)
@@ -42,6 +42,7 @@ extension Swinet {
         func toData() throws -> Data? {
             switch self {
             case .json(let json):
+                guard let json = json else { return nil }
                 return try JSONSerialization.data(withJSONObject: json, options: [])
             case .data(let data):
                 return data
@@ -129,14 +130,10 @@ extension Swinet {
                         parameters: [String: String]? = nil,
                         body: [String: Any]? = nil,
                         headers: [String: String] = config.headers) -> Request {
-        var requestBody: RequestBody? = nil
-        if let body = body {
-            requestBody = .json(body)
-        }
         return request(url,
                        method: method,
                        parameters: parameters,
-                       body: requestBody,
+                       body: .json(body),
                        headers: headers)
     }
 
@@ -165,7 +162,7 @@ extension Swinet {
     static func request(_ url: String,
                         method: HttpMethod = .get,
                         parameters: [String: String]? = nil,
-                        body: RequestBody? = nil,
+                        body: RequestBody,
                         headers: [String: String] = config.headers) -> Request {
         /// Build url with params
         var urlString = url
@@ -193,12 +190,10 @@ extension Swinet {
         }
 
         /// Build body
-        if let body = body {
-            do {
-                request.httpBody = try body.toData()
-            } catch {
-                return Request(request: request, requestError: .invalidBody)
-            }
+        do {
+            request.httpBody = try body.toData()
+        } catch {
+            return Request(request: request, requestError: .invalidBody)
         }
 
         return Request(request: request, requestError: nil)
@@ -222,6 +217,11 @@ extension Swinet {
                           success: @escaping (_ result: Data) -> Void,
                           failure: @escaping (_ error: NetworkError) -> Void) {
             responseClosure(on: queue, type: Data.self, converter: { $0 }, success: success, failure: failure)
+        }
+
+        func responseData(on queue: DispatchQueue = DispatchQueue.main,
+                          success: @escaping (_ result: Data) -> Void) {
+            responseClosure(on: queue, type: Data.self, converter: { $0 }, success: success, failure: nil)
         }
 
         func responseString(on queue: DispatchQueue = DispatchQueue.main,
@@ -257,11 +257,11 @@ extension Swinet {
         }
 
         func responseFile(on queue: DispatchQueue = DispatchQueue.main,
+                          progress: ((_ progress: Double) -> Void)?,
                           success: @escaping (_ url: URL) -> Void,
-                          failure: ((_ error: NetworkError) -> Void)?,
-                          progress: ((_ progress: Double) -> Void)?) {
+                          failure: @escaping (_ error: NetworkError) -> Void) {
             guard let request = request else {
-                failure?(requestError!)
+                failure(requestError!)
                 return
             }
 
@@ -304,23 +304,23 @@ extension Swinet {
                                         type: T.Type,
                                         converter: @escaping (Data) throws -> T,
                                         success: @escaping (_ result: T) -> Void,
-                                        failure: @escaping (_ error: NetworkError) -> Void) {
+                                        failure: ((_ error: NetworkError) -> Void)?) {
 
             guard let request = request else {
-                failure(requestError!)
+                failure?(requestError!)
                 return
             }
 
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if error != nil {
                     queue.async {
-                        failure(.responseFailure(error!, data))
+                        failure?(.responseFailure(error!, data))
                     }
                     return
                 }
                 guard let data = data else {
                     queue.async {
-                        failure(.responseFailure(error ?? NetworkError.unknown, data))
+                        failure?(.responseFailure(error ?? NetworkError.unknown, data))
                     }
                     return
                 }
@@ -331,7 +331,7 @@ extension Swinet {
                     }
                 } catch {
                     queue.async {
-                        failure(error as? NetworkError ?? .unknown)
+                        failure?(error as? NetworkError ?? .unknown)
                     }
                 }
             }

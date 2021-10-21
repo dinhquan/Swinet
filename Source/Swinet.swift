@@ -28,7 +28,9 @@ extension Swinet {
         case invalidUrl
         case invalidBody
         case invalidJSONResponse
-        case decodeFailure
+        case decodeFailure(_ error: Error)
+        case responseFailure(_ error: Error, _ data: Data?)
+        case unknown
     }
 
     enum RequestBody {
@@ -218,13 +220,13 @@ extension Swinet {
 
         func responseData(on queue: DispatchQueue = DispatchQueue.main,
                           success: @escaping (_ result: Data) -> Void,
-                          failure: @escaping (_ error: Error) -> Void) {
+                          failure: @escaping (_ error: NetworkError) -> Void) {
             responseClosure(on: queue, type: Data.self, converter: { $0 }, success: success, failure: failure)
         }
 
         func responseString(on queue: DispatchQueue = DispatchQueue.main,
                             success: @escaping (_ result: String) -> Void,
-                            failure: @escaping (_ error: Error) -> Void) {
+                            failure: @escaping (_ error: NetworkError) -> Void) {
             responseClosure(on: queue, type: String.self, converter: {
                 String(decoding: $0, as: UTF8.self)
             }, success: success, failure: failure)
@@ -232,7 +234,7 @@ extension Swinet {
 
         func responseJSON(on queue: DispatchQueue = DispatchQueue.main,
                           success: @escaping (_ result: [String: Any]) -> Void,
-                          failure: @escaping (_ error: Error) -> Void) {
+                          failure: @escaping (_ error: NetworkError) -> Void) {
             responseClosure(on: queue, type: [String: Any].self, converter: {
                 guard let json = try JSONSerialization.jsonObject(with: $0, options: []) as? [String: Any] else {
                     throw NetworkError.invalidJSONResponse
@@ -244,10 +246,30 @@ extension Swinet {
         func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
                                              _ type: T.Type,
                                              success: @escaping (_ result: T) -> Void,
-                                             failure: @escaping (_ error: Error) -> Void) {
+                                             failure: @escaping (_ error: NetworkError) -> Void) {
             responseClosure(on: queue, type: type, converter: {
-                try JSONDecoder().decode(T.self, from: $0)
+                do {
+                    return try JSONDecoder().decode(T.self, from: $0)
+                } catch {
+                    throw NetworkError.decodeFailure(error)
+                }
             }, success: success, failure: failure)
+        }
+
+        func responseFile(on queue: DispatchQueue = DispatchQueue.main,
+                          success: @escaping (_ url: URL) -> Void,
+                          failure: ((_ error: NetworkError) -> Void)?,
+                          progress: ((_ progress: Double) -> Void)?) {
+            guard let request = request else {
+                failure?(requestError!)
+                return
+            }
+
+            let downloader = Downloader()
+            downloader.download(request,
+                                success: success,
+                                failure: failure,
+                                progress: progress)
         }
 
         func responseData(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Data, Error> {
@@ -276,13 +298,13 @@ extension Swinet {
             }
         }
 
-        /// Private methods
+        /// Internal methods
 
-        private func responseClosure<T>(on queue: DispatchQueue,
+        func responseClosure<T>(on queue: DispatchQueue,
                                         type: T.Type,
                                         converter: @escaping (Data) throws -> T,
                                         success: @escaping (_ result: T) -> Void,
-                                        failure: @escaping (_ error: Error) -> Void) {
+                                        failure: @escaping (_ error: NetworkError) -> Void) {
 
             guard let request = request else {
                 failure(requestError!)
@@ -290,13 +312,18 @@ extension Swinet {
             }
 
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                guard let data = data else {
+                if error != nil {
                     queue.async {
-                        failure(error!)
+                        failure(.responseFailure(error!, data))
                     }
                     return
                 }
-
+                guard let data = data else {
+                    queue.async {
+                        failure(.responseFailure(error ?? NetworkError.unknown, data))
+                    }
+                    return
+                }
                 do {
                     let result = try converter(data)
                     queue.async {
@@ -304,7 +331,7 @@ extension Swinet {
                     }
                 } catch {
                     queue.async {
-                        failure(error)
+                        failure(error as? NetworkError ?? .unknown)
                     }
                 }
             }
@@ -312,7 +339,7 @@ extension Swinet {
             task.resume()
         }
 
-        private func responsePublisher<T>(on queue: DispatchQueue,
+        func responsePublisher<T>(on queue: DispatchQueue,
                                           type: T.Type,
                                           converter: @escaping (Data) throws -> T) -> AnyPublisher<T, Error>  {
             guard let request = request else {
@@ -320,7 +347,8 @@ extension Swinet {
                     .eraseToAnyPublisher()
             }
 
-            return URLSession.shared.dataTaskPublisher(for: request)
+            return URLSession.shared
+                .dataTaskPublisher(for: request)
                 .tryMap { result in
                     return try converter(result.data)
                 }
@@ -338,5 +366,36 @@ extension Swinet {
             return try decoder.decode(type, from: data)
         }
          */
+    }
+}
+
+extension Swinet {
+    class Downloader: NSObject, URLSessionDownloadDelegate {
+        var progress: ((_ progress: Double) -> Void)? = nil
+
+        func download(_ request: URLRequest,
+                      success: @escaping (_ url: URL) -> Void,
+                      failure: ((_ error: NetworkError) -> Void)?,
+                      progress: ((_ progress: Double) -> Void)?) {
+            self.progress = progress
+            let config = URLSessionConfiguration.default
+            let session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
+
+            let task = session.downloadTask(with: request) { url, response, error in
+                guard let url = url else {
+                    failure?(.responseFailure(error ?? NetworkError.unknown, nil))
+                    return
+                }
+                success(url)
+            }
+            task.resume()
+        }
+
+        func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {}
+
+        func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+            let progress = (Double(totalBytesWritten)/Double(totalBytesExpectedToWrite))
+            self.progress?(progress)
+        }
     }
 }

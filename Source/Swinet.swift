@@ -325,7 +325,7 @@ extension Swinet {
         }
 
         func responseFile(on queue: DispatchQueue = DispatchQueue.main,
-                          progress: ((_ progress: Double) -> Void)?,
+                          progress: ((_ progress: Double) -> Void)? = nil,
                           success: @escaping (_ url: URL) -> Void,
                           failure: @escaping (_ error: NetworkError) -> Void) {
             guard let request = request else {
@@ -341,7 +341,7 @@ extension Swinet {
         }
 
         func responseFile(on queue: DispatchQueue = DispatchQueue.main,
-                          progress: ((_ progress: Double) -> Void)?,
+                          progress: ((_ progress: Double) -> Void)? = nil,
                           success: @escaping (_ url: URL) -> Void) {
             guard let request = request else {
                 return

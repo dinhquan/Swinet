@@ -12,20 +12,12 @@
 		1479FEA5271D834C0082793B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1479FEA4271D834C0082793B /* Assets.xcassets */; };
 		1479FEA8271D834C0082793B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1479FEA7271D834C0082793B /* Preview Assets.xcassets */; };
 		1479FEB3271D834D0082793B /* SwinetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FEB2271D834D0082793B /* SwinetTests.swift */; };
-		1479FEBE271D834D0082793B /* SwinetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FEBD271D834D0082793B /* SwinetUITests.swift */; };
 		1479FECD271D844F0082793B /* Swinet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FECC271D844F0082793B /* Swinet.swift */; };
 		1479FED0272123AA0082793B /* SwinetExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FECF272123AA0082793B /* SwinetExamples.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		1479FEAF271D834D0082793B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1479FE95271D83490082793B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1479FE9C271D83490082793B;
-			remoteInfo = Swinet;
-		};
-		1479FEBA271D834D0082793B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1479FE95271D83490082793B /* Project object */;
 			proxyType = 1;
@@ -44,9 +36,6 @@
 		1479FEAE271D834D0082793B /* SwinetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1479FEB2271D834D0082793B /* SwinetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetTests.swift; sourceTree = "<group>"; };
 		1479FEB4271D834D0082793B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1479FEB9271D834D0082793B /* SwinetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1479FEBD271D834D0082793B /* SwinetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetUITests.swift; sourceTree = "<group>"; };
-		1479FEBF271D834D0082793B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1479FECC271D844F0082793B /* Swinet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinet.swift; sourceTree = "<group>"; };
 		1479FECF272123AA0082793B /* SwinetExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetExamples.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,13 +55,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1479FEB6271D834D0082793B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -82,7 +64,6 @@
 				1479FECB271D83D90082793B /* Source */,
 				1479FE9F271D834A0082793B /* Swinet */,
 				1479FEB1271D834D0082793B /* SwinetTests */,
-				1479FEBC271D834D0082793B /* SwinetUITests */,
 				1479FE9E271D83490082793B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,7 +73,6 @@
 			children = (
 				1479FE9D271D83490082793B /* Swinet.app */,
 				1479FEAE271D834D0082793B /* SwinetTests.xctest */,
-				1479FEB9271D834D0082793B /* SwinetUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,15 +105,6 @@
 				1479FEB4271D834D0082793B /* Info.plist */,
 			);
 			path = SwinetTests;
-			sourceTree = "<group>";
-		};
-		1479FEBC271D834D0082793B /* SwinetUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1479FEBD271D834D0082793B /* SwinetUITests.swift */,
-				1479FEBF271D834D0082793B /* Info.plist */,
-			);
-			path = SwinetUITests;
 			sourceTree = "<group>";
 		};
 		1479FECB271D83D90082793B /* Source */ = {
@@ -182,24 +153,6 @@
 			productReference = 1479FEAE271D834D0082793B /* SwinetTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		1479FEB8271D834D0082793B /* SwinetUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1479FEC8271D834D0082793B /* Build configuration list for PBXNativeTarget "SwinetUITests" */;
-			buildPhases = (
-				1479FEB5271D834D0082793B /* Sources */,
-				1479FEB6271D834D0082793B /* Frameworks */,
-				1479FEB7271D834D0082793B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1479FEBB271D834D0082793B /* PBXTargetDependency */,
-			);
-			name = SwinetUITests;
-			productName = SwinetUITests;
-			productReference = 1479FEB9271D834D0082793B /* SwinetUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -213,10 +166,6 @@
 						CreatedOnToolsVersion = 12.5.1;
 					};
 					1479FEAD271D834D0082793B = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 1479FE9C271D83490082793B;
-					};
-					1479FEB8271D834D0082793B = {
 						CreatedOnToolsVersion = 12.5.1;
 						TestTargetID = 1479FE9C271D83490082793B;
 					};
@@ -237,7 +186,6 @@
 			targets = (
 				1479FE9C271D83490082793B /* Swinet */,
 				1479FEAD271D834D0082793B /* SwinetTests */,
-				1479FEB8271D834D0082793B /* SwinetUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -253,13 +201,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1479FEAC271D834D0082793B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1479FEB7271D834D0082793B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,14 +229,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1479FEB5271D834D0082793B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1479FEBE271D834D0082793B /* SwinetUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -303,11 +236,6 @@
 			isa = PBXTargetDependency;
 			target = 1479FE9C271D83490082793B /* Swinet */;
 			targetProxy = 1479FEAF271D834D0082793B /* PBXContainerItemProxy */;
-		};
-		1479FEBB271D834D0082793B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1479FE9C271D83490082793B /* Swinet */;
-			targetProxy = 1479FEBA271D834D0082793B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -512,44 +440,6 @@
 			};
 			name = Release;
 		};
-		1479FEC9271D834D0082793B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SwinetUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.SwinetUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Swinet;
-			};
-			name = Debug;
-		};
-		1479FECA271D834D0082793B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SwinetUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.SwinetUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Swinet;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -576,15 +466,6 @@
 			buildConfigurations = (
 				1479FEC6271D834D0082793B /* Debug */,
 				1479FEC7271D834D0082793B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1479FEC8271D834D0082793B /* Build configuration list for PBXNativeTarget "SwinetUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1479FEC9271D834D0082793B /* Debug */,
-				1479FECA271D834D0082793B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -109,6 +109,8 @@ extension Swinet {
 
         private var values: [String: Value] = [:]
 
+        init() {}
+
         init(_ values: [String: Value]) {
             self.values = values
         }

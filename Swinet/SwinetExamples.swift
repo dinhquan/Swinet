@@ -6,10 +6,7 @@
 //
 
 import Foundation
-
-struct ResponseModel: Decodable {
-
-}
+import Combine
 
 class SwinetExamples: ObservableObject {
 
@@ -21,15 +18,90 @@ class SwinetExamples: ObservableObject {
     }
 
     func errorHandling() {
-        Swinet.request("https://httpbin.org/get")
+        Swinet.request("https://httpbin.org/get", parameters: ["query": "apple"])
             .responseDecodable(ResponseModel.self, success: { model in
                 print(model)
             }, failure: { error in
                 print(error.errorDescription)
-                print("\(error.statusCode)")
-                print("\(error.data)")
+                print(error.statusCode as Any)
+                print(error.data as Any)
             })
     }
 
+    func postWithJsonBody() {
+        let headers = [
+            "Content-Type": "application/json",
+            "Authorization": "Bearer 398u99fsh9sdhf9shf9sdhf9shdf"
+        ]
+        let body = [
+            "username": "quan",
+            "password": "quan123"
+        ]
+        Swinet.request("https://httpbin.org/post",
+                       method: .post,
+                       body: body,
+                       headers: headers)
+            .responseDecodable(ResponseModel.self, success: { model in
+                print(model)
+            }, failure: { error in
+                print(error)
+            })
+    }
 
+    func uploadFileWithFormData() {
+        let formData = Swinet.FormData([
+            "name": .string("quan"),
+            "avatar": .file(url: URL(string: "<file path>")!)
+        ])
+        Swinet.formDataRequest("https://httpbin.org/post", formData: formData)
+            .responseJSON { json in
+                print(json)
+            }
+    }
+
+    func downloadFile() {
+        Swinet.request("https://httpbin.org/file")
+            .responseFile(progress: { progress in
+                print(progress)
+            }, success: { fileUrl in
+                print(fileUrl)
+            }, failure: { error in
+                print(error)
+            })
+    }
+
+    func graphQL() {
+        let query = """
+        query HeroNameAndFriends($episode: String!) {
+          hero(episode: $episode) {
+            name
+            friends {
+              name
+            }
+          }
+        }
+        """
+        let variables = ["episode": "JEDI"]
+        Swinet.graphQLRequest("https://httpbin.org/graphql", query: query, variables: variables)
+            .responseDecodable(ResponseModel.self, success: { model in
+                print(model)
+            }, failure: { error in
+                print(error)
+            })
+    }
+
+    func publisher() {
+        var bag = Set<AnyCancellable>()
+        Swinet.request("https://httpbin.org/get")
+            .responseDecodable(ResponseModel.self)
+            .sink { error in
+                print(error)
+            } receiveValue: { model in
+                print(model)
+            }
+            .store(in: &bag)
+
+    }
+
+    struct ResponseModel: Decodable {}
 }

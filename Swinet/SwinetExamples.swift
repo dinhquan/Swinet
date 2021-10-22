@@ -18,9 +18,9 @@ class SwinetExamples: ObservableObject {
     }
 
     func errorHandling() {
-        Swinet.request("https://httpbin.org/get", parameters: ["query": "apple"])
-            .responseDecodable(ResponseModel.self, success: { model in
-                print(model)
+        Swinet.request("https://domain.com/login", parameters: ["username": "test", "password": "test"])
+            .responseDecodable(User.self, success: { user in
+                print(user)
             }, failure: { error in
                 print(error.errorDescription)
                 print(error.statusCode as Any)
@@ -41,8 +41,8 @@ class SwinetExamples: ObservableObject {
                        method: .post,
                        body: body,
                        headers: headers)
-            .responseDecodable(ResponseModel.self, success: { model in
-                print(model)
+            .responseDecodable(User.self, success: { user in
+                print(user)
             }, failure: { error in
                 print(error)
             })
@@ -83,17 +83,17 @@ class SwinetExamples: ObservableObject {
         """
         let variables = ["episode": "JEDI"]
         Swinet.graphQLRequest("https://httpbin.org/graphql", query: query, variables: variables)
-            .responseDecodable(ResponseModel.self, success: { model in
+            .responseDecodable(User.self, success: { model in
                 print(model)
             }, failure: { error in
                 print(error)
             })
     }
 
-    func publisher() {
+    func combine() {
         var bag = Set<AnyCancellable>()
         Swinet.request("https://httpbin.org/get")
-            .responseDecodable(ResponseModel.self)
+            .publishDecodable(User.self)
             .sink { error in
                 print(error)
             } receiveValue: { model in
@@ -103,5 +103,19 @@ class SwinetExamples: ObservableObject {
 
     }
 
-    struct ResponseModel: Decodable {}
+    @available(iOS 15.0.0, *)
+    @MainActor
+    func fetchUser() async {
+        do {
+            let user = try await Swinet.request("https://domain.com/user").responseDecodable(User.self)
+            print(user)
+        } catch {
+            print(error)
+        }
+    }
+
+    struct User: Decodable {
+        let username: String
+        let email: String
+    }
 }

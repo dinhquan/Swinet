@@ -394,17 +394,17 @@ extension Swinet {
 
         /// Combine
 
-        public func responseData(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Data, Error> {
+        public func publishData(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Data, Error> {
             responsePublisher(on: queue, type: Data.self, converter: { $0 })
         }
 
-        public func responseString(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<String, Error> {
+        public func publishString(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<String, Error> {
             responsePublisher(on: queue, type: String.self) {
                 String(decoding: $0, as: UTF8.self)
             }
         }
 
-        public func responseJSON(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Any, Error> {
+        public func publishJSON(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Any, Error> {
             responsePublisher(on: queue, type: Any.self) {
                 do {
                     return try JSONSerialization.jsonObject(with: $0, options: [])
@@ -414,7 +414,7 @@ extension Swinet {
             }
         }
 
-        public func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
+        public func publishDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
                                              _ type: T.Type) -> AnyPublisher<T, Error> {
             responsePublisher(on: queue, type: type) {
                 try JSONDecoder().decode(T.self, from: $0)

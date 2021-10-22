@@ -8,10 +8,10 @@
 import Foundation
 import Combine
 
-struct Swinet {}
+public struct Swinet {}
 
 extension Swinet {
-    enum HttpMethod: String {
+    public enum HttpMethod: String {
         case get = "GET"
         case post = "POST"
         case put = "PUT"
@@ -23,7 +23,7 @@ extension Swinet {
         case trace = "TRACE"
     }
 
-    enum NetworkError: Error {
+    public enum NetworkError: Error {
         case unknown
         case invalidUrl(_ url: String)
         case invalidBody(_ error: Error)
@@ -31,7 +31,7 @@ extension Swinet {
         case decodeFailure(_ error: Error)
         case responseFailure(_ error: Error, _ response: URLResponse?, _ data: Data?)
 
-        var errorDescription: String {
+        public var errorDescription: String {
             switch self {
             case .invalidUrl(let url):
                 return "Invalid url: \(url)"
@@ -48,7 +48,7 @@ extension Swinet {
             }
         }
 
-        var statusCode: Int? {
+        public var statusCode: Int? {
             switch self {
             case .responseFailure(_, let response, _):
                 return (response as? HTTPURLResponse)?.statusCode
@@ -57,7 +57,7 @@ extension Swinet {
             }
         }
 
-        var data: Data? {
+        public var data: Data? {
             switch self {
             case .responseFailure(_, _, let data):
                 return data
@@ -67,7 +67,7 @@ extension Swinet {
         }
     }
 
-    enum RequestBody {
+    public enum RequestBody {
         case json([String: Any]?)
         case data(Data)
         case formData(FormData)
@@ -100,25 +100,25 @@ extension Swinet {
         }
     }
 
-    struct FormData {
-        enum Value {
+    public struct FormData {
+        public enum Value {
             case string(String)
             case file(url: URL)
         }
 
-        private var values: [String: Value] = [:]
+        var values: [String: Value] = [:]
 
-        init() {}
+        public init() {}
 
-        init(_ values: [String: Value]) {
+        public init(_ values: [String: Value]) {
             self.values = values
         }
 
-        mutating func append(key: String, value: String) {
+        public mutating func append(key: String, value: String) {
             values[key] = .string(value)
         }
 
-        mutating func append(key: String, fileUrl: URL) {
+        public mutating func append(key: String, fileUrl: URL) {
             values[key] = .file(url: fileUrl)
         }
 
@@ -148,12 +148,12 @@ extension Swinet {
 
 /// Config
 extension Swinet {
-    struct Config {
-        var timeOutInterval: Double
-        var headers: [String: String]
+    public struct Config {
+        public var timeOutInterval: Double
+        public var headers: [String: String]
     }
 
-    static var config = Config(
+    public static var config = Config(
         timeOutInterval: 60.0,
         headers: ["Content-Type": "application/json"]
     )
@@ -161,7 +161,7 @@ extension Swinet {
 
 /// Request builder
 extension Swinet {
-    static func request(_ url: String,
+    public static func request(_ url: String,
                         method: HttpMethod = .get,
                         parameters: [String: String]? = nil,
                         body: [String: Any]? = nil,
@@ -173,7 +173,7 @@ extension Swinet {
                        headers: headers)
     }
 
-    static func formDataRequest(_ url: String,
+    public static func formDataRequest(_ url: String,
                                 method: HttpMethod = .get,
                                 parameters: [String: String]? = nil,
                                 formData: FormData,
@@ -185,7 +185,7 @@ extension Swinet {
                        headers: headers)
     }
 
-    static func graphQLRequest(_ url: String,
+    public static func graphQLRequest(_ url: String,
                                 query: String,
                                 variables: [String: Any]?,
                                 headers: [String: String] = config.headers) -> Request {
@@ -195,7 +195,7 @@ extension Swinet {
                        headers: headers)
     }
 
-    static func request(_ url: String,
+    public static func request(_ url: String,
                         method: HttpMethod = .get,
                         parameters: [String: String]? = nil,
                         body: RequestBody,
@@ -238,7 +238,7 @@ extension Swinet {
 
 /// Response functions
 extension Swinet {
-    struct Request {
+    public struct Request {
         let request: URLRequest?
         let requestError: NetworkError?
 
@@ -249,18 +249,18 @@ extension Swinet {
 
         /// Closure
 
-        func responseData(on queue: DispatchQueue = DispatchQueue.main,
+        public func responseData(on queue: DispatchQueue = DispatchQueue.main,
                           success: @escaping (_ result: Data) -> Void,
                           failure: @escaping (_ error: NetworkError) -> Void) {
             responseClosure(on: queue, type: Data.self, converter: { $0 }, success: success, failure: failure)
         }
 
-        func responseData(on queue: DispatchQueue = DispatchQueue.main,
+        public func responseData(on queue: DispatchQueue = DispatchQueue.main,
                           success: @escaping (_ result: Data) -> Void) {
             responseClosure(on: queue, type: Data.self, converter: { $0 }, success: success, failure: nil)
         }
 
-        func responseString(on queue: DispatchQueue = DispatchQueue.main,
+        public func responseString(on queue: DispatchQueue = DispatchQueue.main,
                             success: @escaping (_ result: String) -> Void,
                             failure: @escaping (_ error: NetworkError) -> Void) {
             responseClosure(on: queue, type: String.self, converter: {
@@ -268,14 +268,14 @@ extension Swinet {
             }, success: success, failure: failure)
         }
 
-        func responseString(on queue: DispatchQueue = DispatchQueue.main,
+        public func responseString(on queue: DispatchQueue = DispatchQueue.main,
                             success: @escaping (_ result: String) -> Void) {
             responseClosure(on: queue, type: String.self, converter: {
                 String(decoding: $0, as: UTF8.self)
             }, success: success, failure: nil)
         }
 
-        func responseJSON(on queue: DispatchQueue = DispatchQueue.main,
+        public func responseJSON(on queue: DispatchQueue = DispatchQueue.main,
                           success: @escaping (_ result: Any) -> Void,
                           failure: @escaping (_ error: NetworkError) -> Void) {
             responseClosure(on: queue, type: Any.self, converter: {
@@ -287,7 +287,7 @@ extension Swinet {
             }, success: success, failure: failure)
         }
 
-        func responseJSON(on queue: DispatchQueue = DispatchQueue.main,
+        public func responseJSON(on queue: DispatchQueue = DispatchQueue.main,
                           success: @escaping (_ result: Any) -> Void) {
             responseClosure(on: queue, type: Any.self, converter: {
                 do {
@@ -298,7 +298,7 @@ extension Swinet {
             }, success: success, failure: nil)
         }
 
-        func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
+        public func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
                                              _ type: T.Type,
                                              success: @escaping (_ result: T) -> Void,
                                              failure: @escaping (_ error: NetworkError) -> Void) {
@@ -311,7 +311,7 @@ extension Swinet {
             }, success: success, failure: failure)
         }
 
-        func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
+        public func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
                                              _ type: T.Type,
                                              success: @escaping (_ result: T) -> Void) {
             responseClosure(on: queue, type: type, converter: {
@@ -323,7 +323,7 @@ extension Swinet {
             }, success: success, failure: nil)
         }
 
-        func responseFile(on queue: DispatchQueue = DispatchQueue.main,
+        public func responseFile(on queue: DispatchQueue = DispatchQueue.main,
                           progress: ((_ progress: Double) -> Void)? = nil,
                           success: @escaping (_ url: URL) -> Void,
                           failure: @escaping (_ error: NetworkError) -> Void) {
@@ -339,7 +339,7 @@ extension Swinet {
                                 progress: progress)
         }
 
-        func responseFile(on queue: DispatchQueue = DispatchQueue.main,
+        public func responseFile(on queue: DispatchQueue = DispatchQueue.main,
                           progress: ((_ progress: Double) -> Void)? = nil,
                           success: @escaping (_ url: URL) -> Void) {
             guard let request = request else {
@@ -394,17 +394,17 @@ extension Swinet {
 
         /// Combine
 
-        func responseData(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Data, Error> {
+        public func responseData(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Data, Error> {
             responsePublisher(on: queue, type: Data.self, converter: { $0 })
         }
 
-        func responseString(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<String, Error> {
+        public func responseString(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<String, Error> {
             responsePublisher(on: queue, type: String.self) {
                 String(decoding: $0, as: UTF8.self)
             }
         }
 
-        func responseJSON(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Any, Error> {
+        public func responseJSON(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Any, Error> {
             responsePublisher(on: queue, type: Any.self) {
                 do {
                     return try JSONSerialization.jsonObject(with: $0, options: [])
@@ -414,7 +414,7 @@ extension Swinet {
             }
         }
 
-        func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
+        public func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
                                              _ type: T.Type) -> AnyPublisher<T, Error> {
             responsePublisher(on: queue, type: type) {
                 try JSONDecoder().decode(T.self, from: $0)
@@ -441,7 +441,7 @@ extension Swinet {
         /// Swift concurrency
 
         @available(iOS 15.0.0, *)
-        func responseData() async throws -> Data {
+        public func responseData() async throws -> Data {
             guard let request = request else {
                 throw(requestError!)
             }
@@ -450,7 +450,7 @@ extension Swinet {
         }
 
         @available(iOS 15.0.0, *)
-        func responseString() async throws -> String {
+        public func responseString() async throws -> String {
             guard let request = request else {
                 throw(requestError!)
             }
@@ -459,7 +459,7 @@ extension Swinet {
         }
 
         @available(iOS 15.0.0, *)
-        func responseJSON() async throws -> Any {
+        public func responseJSON() async throws -> Any {
             guard let request = request else {
                 throw(requestError!)
             }
@@ -472,7 +472,7 @@ extension Swinet {
         }
 
         @available(iOS 15.0.0, *)
-        func responseDecodable<T: Decodable>(_ type: T.Type) async throws -> T {
+        public func responseDecodable<T: Decodable>(_ type: T.Type) async throws -> T {
             guard let request = request else {
                 throw(requestError!)
             }

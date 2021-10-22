@@ -114,6 +114,14 @@ class SwinetExamples: ObservableObject {
         }
     }
 
+    func configure() {
+        Swinet.config.timeOutInterval = 30
+        Swinet.config.headers = [
+            "Content-Type": "application/json",
+            "Authorization": "Bearer 398u99fsh9sdhf9shf9sdhf9shdf"
+        ]
+    }
+
     struct User: Decodable {
         let username: String
         let email: String

@@ -10,7 +10,6 @@ import Combine
 
 struct Swinet {}
 
-/// Internal types
 extension Swinet {
     enum HttpMethod: String {
         case get = "GET"
@@ -160,7 +159,7 @@ extension Swinet {
     )
 }
 
-/// Request
+/// Request builder
 extension Swinet {
     static func request(_ url: String,
                         method: HttpMethod = .get,
@@ -237,7 +236,7 @@ extension Swinet {
     }
 }
 
-/// Response
+/// Response functions
 extension Swinet {
     struct Request {
         let request: URLRequest?
@@ -248,7 +247,7 @@ extension Swinet {
             self.requestError = requestError
         }
 
-        /// Public methods
+        /// Closure
 
         func responseData(on queue: DispatchQueue = DispatchQueue.main,
                           success: @escaping (_ result: Data) -> Void,
@@ -354,35 +353,6 @@ extension Swinet {
                                 progress: progress)
         }
 
-        func responseData(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Data, Error> {
-            responsePublisher(on: queue, type: Data.self, converter: { $0 })
-        }
-
-        func responseString(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<String, Error> {
-            responsePublisher(on: queue, type: String.self) {
-                String(decoding: $0, as: UTF8.self)
-            }
-        }
-
-        func responseJSON(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Any, Error> {
-            responsePublisher(on: queue, type: Any.self) {
-                do {
-                    return try JSONSerialization.jsonObject(with: $0, options: [])
-                } catch {
-                    throw NetworkError.invalidJSONResponse(error)
-                }
-            }
-        }
-
-        func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
-                                             _ type: T.Type) -> AnyPublisher<T, Error> {
-            responsePublisher(on: queue, type: type) {
-                try JSONDecoder().decode(T.self, from: $0)
-            }
-        }
-
-        /// Internal methods
-
         func responseClosure<T>(on queue: DispatchQueue,
                                         type: T.Type,
                                         converter: @escaping (Data) throws -> T,
@@ -422,9 +392,38 @@ extension Swinet {
             task.resume()
         }
 
+        /// Combine
+
+        func responseData(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Data, Error> {
+            responsePublisher(on: queue, type: Data.self, converter: { $0 })
+        }
+
+        func responseString(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<String, Error> {
+            responsePublisher(on: queue, type: String.self) {
+                String(decoding: $0, as: UTF8.self)
+            }
+        }
+
+        func responseJSON(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Any, Error> {
+            responsePublisher(on: queue, type: Any.self) {
+                do {
+                    return try JSONSerialization.jsonObject(with: $0, options: [])
+                } catch {
+                    throw NetworkError.invalidJSONResponse(error)
+                }
+            }
+        }
+
+        func responseDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
+                                             _ type: T.Type) -> AnyPublisher<T, Error> {
+            responsePublisher(on: queue, type: type) {
+                try JSONDecoder().decode(T.self, from: $0)
+            }
+        }
+
         func responsePublisher<T>(on queue: DispatchQueue,
-                                          type: T.Type,
-                                          converter: @escaping (Data) throws -> T) -> AnyPublisher<T, Error>  {
+                                  type: T.Type,
+                                  converter: @escaping (Data) throws -> T) -> AnyPublisher<T, Error>  {
             guard let request = request else {
                 return Fail(error: requestError!)
                     .eraseToAnyPublisher()
@@ -439,7 +438,40 @@ extension Swinet {
                 .eraseToAnyPublisher()
         }
 
-        /*
+        /// Swift concurrency
+
+        @available(iOS 15.0.0, *)
+        func responseData() async throws -> Data {
+            guard let request = request else {
+                throw(requestError!)
+            }
+            let (data, _) = try await URLSession.shared.data(for: request)
+            return data
+        }
+
+        @available(iOS 15.0.0, *)
+        func responseString() async throws -> String {
+            guard let request = request else {
+                throw(requestError!)
+            }
+            let (data, _) = try await URLSession.shared.data(for: request)
+            return String(decoding: data, as: UTF8.self)
+        }
+
+        @available(iOS 15.0.0, *)
+        func responseJSON() async throws -> Any {
+            guard let request = request else {
+                throw(requestError!)
+            }
+            let (data, _) = try await URLSession.shared.data(for: request)
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: [])
+            } catch {
+                throw NetworkError.invalidJSONResponse(error)
+            }
+        }
+
+        @available(iOS 15.0.0, *)
         func responseDecodable<T: Decodable>(_ type: T.Type) async throws -> T {
             guard let request = request else {
                 throw(requestError!)
@@ -448,7 +480,6 @@ extension Swinet {
             let decoder = JSONDecoder()
             return try decoder.decode(type, from: data)
         }
-         */
     }
 }
 

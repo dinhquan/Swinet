@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class SwinetExamples: ObservableObject {
+class SwinetExamples {
 
     func simpleGet() {
         Swinet.request("https://httpbin.org/get")
@@ -90,6 +90,7 @@ class SwinetExamples: ObservableObject {
             })
     }
 
+    @available(iOS 13.0.0, *)
     func combine() {
         var bag = Set<AnyCancellable>()
         Swinet.request("https://httpbin.org/get")

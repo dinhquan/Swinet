@@ -3,52 +3,53 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1479FEA1271D834A0082793B /* SwinetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FEA0271D834A0082793B /* SwinetApp.swift */; };
-		1479FEA3271D834A0082793B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FEA2271D834A0082793B /* ContentView.swift */; };
-		1479FEA5271D834C0082793B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1479FEA4271D834C0082793B /* Assets.xcassets */; };
-		1479FEA8271D834C0082793B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1479FEA7271D834C0082793B /* Preview Assets.xcassets */; };
-		1479FEB3271D834D0082793B /* SwinetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FEB2271D834D0082793B /* SwinetTests.swift */; };
-		1479FECD271D844F0082793B /* Swinet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FECC271D844F0082793B /* Swinet.swift */; };
-		1479FED0272123AA0082793B /* SwinetExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1479FECF272123AA0082793B /* SwinetExamples.swift */; };
+		14DA382C2722C44300DCD6A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA382B2722C44300DCD6A4 /* AppDelegate.swift */; };
+		14DA38302722C44300DCD6A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA382F2722C44300DCD6A4 /* ViewController.swift */; };
+		14DA38332722C44300DCD6A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14DA38312722C44300DCD6A4 /* Main.storyboard */; };
+		14DA38352722C44700DCD6A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14DA38342722C44700DCD6A4 /* Assets.xcassets */; };
+		14DA38382722C44700DCD6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14DA38362722C44700DCD6A4 /* LaunchScreen.storyboard */; };
+		14DA38432722C44800DCD6A4 /* SwinetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA38422722C44800DCD6A4 /* SwinetTests.swift */; };
+		14DA385C2722C51100DCD6A4 /* SwinetExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA385B2722C51100DCD6A4 /* SwinetExamples.swift */; };
+		14DA385F2722C51A00DCD6A4 /* Swinet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA385E2722C51A00DCD6A4 /* Swinet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1479FEAF271D834D0082793B /* PBXContainerItemProxy */ = {
+		14DA383F2722C44800DCD6A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1479FE95271D83490082793B /* Project object */;
+			containerPortal = 14DA38202722C44300DCD6A4 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1479FE9C271D83490082793B;
+			remoteGlobalIDString = 14DA38272722C44300DCD6A4;
 			remoteInfo = Swinet;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1479FE9D271D83490082793B /* Swinet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swinet.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1479FEA0271D834A0082793B /* SwinetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetApp.swift; sourceTree = "<group>"; };
-		1479FEA2271D834A0082793B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1479FEA4271D834C0082793B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1479FEA7271D834C0082793B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1479FEA9271D834C0082793B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1479FEAE271D834D0082793B /* SwinetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1479FEB2271D834D0082793B /* SwinetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetTests.swift; sourceTree = "<group>"; };
-		1479FEB4271D834D0082793B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1479FECC271D844F0082793B /* Swinet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinet.swift; sourceTree = "<group>"; };
-		1479FECF272123AA0082793B /* SwinetExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetExamples.swift; sourceTree = "<group>"; };
+		14DA38282722C44300DCD6A4 /* Swinet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swinet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14DA382B2722C44300DCD6A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		14DA382F2722C44300DCD6A4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		14DA38322722C44300DCD6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		14DA38342722C44700DCD6A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		14DA38372722C44700DCD6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		14DA38392722C44700DCD6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14DA383E2722C44800DCD6A4 /* SwinetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwinetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		14DA38422722C44800DCD6A4 /* SwinetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinetTests.swift; sourceTree = "<group>"; };
+		14DA385B2722C51100DCD6A4 /* SwinetExamples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwinetExamples.swift; sourceTree = "<group>"; };
+		14DA385E2722C51A00DCD6A4 /* Swinet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swinet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1479FE9A271D83490082793B /* Frameworks */ = {
+		14DA38252722C44300DCD6A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1479FEAB271D834D0082793B /* Frameworks */ = {
+		14DA383B2722C44800DCD6A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -58,59 +59,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1479FE94271D83490082793B = {
+		14DA381F2722C44300DCD6A4 = {
 			isa = PBXGroup;
 			children = (
-				1479FECB271D83D90082793B /* Source */,
-				1479FE9F271D834A0082793B /* Swinet */,
-				1479FEB1271D834D0082793B /* SwinetTests */,
-				1479FE9E271D83490082793B /* Products */,
+				14DA385D2722C51A00DCD6A4 /* Source */,
+				14DA382A2722C44300DCD6A4 /* Swinet */,
+				14DA38412722C44800DCD6A4 /* SwinetTests */,
+				14DA38292722C44300DCD6A4 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		1479FE9E271D83490082793B /* Products */ = {
+		14DA38292722C44300DCD6A4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1479FE9D271D83490082793B /* Swinet.app */,
-				1479FEAE271D834D0082793B /* SwinetTests.xctest */,
+				14DA38282722C44300DCD6A4 /* Swinet.app */,
+				14DA383E2722C44800DCD6A4 /* SwinetTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1479FE9F271D834A0082793B /* Swinet */ = {
+		14DA382A2722C44300DCD6A4 /* Swinet */ = {
 			isa = PBXGroup;
 			children = (
-				1479FEA0271D834A0082793B /* SwinetApp.swift */,
-				1479FEA2271D834A0082793B /* ContentView.swift */,
-				1479FECF272123AA0082793B /* SwinetExamples.swift */,
-				1479FEA4271D834C0082793B /* Assets.xcassets */,
-				1479FEA9271D834C0082793B /* Info.plist */,
-				1479FEA6271D834C0082793B /* Preview Content */,
+				14DA385B2722C51100DCD6A4 /* SwinetExamples.swift */,
+				14DA382B2722C44300DCD6A4 /* AppDelegate.swift */,
+				14DA382F2722C44300DCD6A4 /* ViewController.swift */,
+				14DA38312722C44300DCD6A4 /* Main.storyboard */,
+				14DA38342722C44700DCD6A4 /* Assets.xcassets */,
+				14DA38362722C44700DCD6A4 /* LaunchScreen.storyboard */,
+				14DA38392722C44700DCD6A4 /* Info.plist */,
 			);
 			path = Swinet;
 			sourceTree = "<group>";
 		};
-		1479FEA6271D834C0082793B /* Preview Content */ = {
+		14DA38412722C44800DCD6A4 /* SwinetTests */ = {
 			isa = PBXGroup;
 			children = (
-				1479FEA7271D834C0082793B /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		1479FEB1271D834D0082793B /* SwinetTests */ = {
-			isa = PBXGroup;
-			children = (
-				1479FEB2271D834D0082793B /* SwinetTests.swift */,
-				1479FEB4271D834D0082793B /* Info.plist */,
+				14DA38422722C44800DCD6A4 /* SwinetTests.swift */,
 			);
 			path = SwinetTests;
 			sourceTree = "<group>";
 		};
-		1479FECB271D83D90082793B /* Source */ = {
+		14DA385D2722C51A00DCD6A4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				1479FECC271D844F0082793B /* Swinet.swift */,
+				14DA385E2722C51A00DCD6A4 /* Swinet.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -118,13 +111,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1479FE9C271D83490082793B /* Swinet */ = {
+		14DA38272722C44300DCD6A4 /* Swinet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1479FEC2271D834D0082793B /* Build configuration list for PBXNativeTarget "Swinet" */;
+			buildConfigurationList = 14DA38522722C44800DCD6A4 /* Build configuration list for PBXNativeTarget "Swinet" */;
 			buildPhases = (
-				1479FE99271D83490082793B /* Sources */,
-				1479FE9A271D83490082793B /* Frameworks */,
-				1479FE9B271D83490082793B /* Resources */,
+				14DA38242722C44300DCD6A4 /* Sources */,
+				14DA38252722C44300DCD6A4 /* Frameworks */,
+				14DA38262722C44300DCD6A4 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -132,75 +125,77 @@
 			);
 			name = Swinet;
 			productName = Swinet;
-			productReference = 1479FE9D271D83490082793B /* Swinet.app */;
+			productReference = 14DA38282722C44300DCD6A4 /* Swinet.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1479FEAD271D834D0082793B /* SwinetTests */ = {
+		14DA383D2722C44800DCD6A4 /* SwinetTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1479FEC5271D834D0082793B /* Build configuration list for PBXNativeTarget "SwinetTests" */;
+			buildConfigurationList = 14DA38552722C44800DCD6A4 /* Build configuration list for PBXNativeTarget "SwinetTests" */;
 			buildPhases = (
-				1479FEAA271D834D0082793B /* Sources */,
-				1479FEAB271D834D0082793B /* Frameworks */,
-				1479FEAC271D834D0082793B /* Resources */,
+				14DA383A2722C44800DCD6A4 /* Sources */,
+				14DA383B2722C44800DCD6A4 /* Frameworks */,
+				14DA383C2722C44800DCD6A4 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1479FEB0271D834D0082793B /* PBXTargetDependency */,
+				14DA38402722C44800DCD6A4 /* PBXTargetDependency */,
 			);
 			name = SwinetTests;
 			productName = SwinetTests;
-			productReference = 1479FEAE271D834D0082793B /* SwinetTests.xctest */;
+			productReference = 14DA383E2722C44800DCD6A4 /* SwinetTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1479FE95271D83490082793B /* Project object */ = {
+		14DA38202722C44300DCD6A4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
-					1479FE9C271D83490082793B = {
-						CreatedOnToolsVersion = 12.5.1;
+					14DA38272722C44300DCD6A4 = {
+						CreatedOnToolsVersion = 13.0;
 					};
-					1479FEAD271D834D0082793B = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 1479FE9C271D83490082793B;
+					14DA383D2722C44800DCD6A4 = {
+						CreatedOnToolsVersion = 13.0;
+						TestTargetID = 14DA38272722C44300DCD6A4;
 					};
 				};
 			};
-			buildConfigurationList = 1479FE98271D83490082793B /* Build configuration list for PBXProject "Swinet" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = 14DA38232722C44300DCD6A4 /* Build configuration list for PBXProject "Swinet" */;
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 1479FE94271D83490082793B;
-			productRefGroup = 1479FE9E271D83490082793B /* Products */;
+			mainGroup = 14DA381F2722C44300DCD6A4;
+			productRefGroup = 14DA38292722C44300DCD6A4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1479FE9C271D83490082793B /* Swinet */,
-				1479FEAD271D834D0082793B /* SwinetTests */,
+				14DA38272722C44300DCD6A4 /* Swinet */,
+				14DA383D2722C44800DCD6A4 /* SwinetTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1479FE9B271D83490082793B /* Resources */ = {
+		14DA38262722C44300DCD6A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1479FEA8271D834C0082793B /* Preview Assets.xcassets in Resources */,
-				1479FEA5271D834C0082793B /* Assets.xcassets in Resources */,
+				14DA38382722C44700DCD6A4 /* LaunchScreen.storyboard in Resources */,
+				14DA38352722C44700DCD6A4 /* Assets.xcassets in Resources */,
+				14DA38332722C44300DCD6A4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1479FEAC271D834D0082793B /* Resources */ = {
+		14DA383C2722C44800DCD6A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -210,43 +205,62 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1479FE99271D83490082793B /* Sources */ = {
+		14DA38242722C44300DCD6A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1479FED0272123AA0082793B /* SwinetExamples.swift in Sources */,
-				1479FEA3271D834A0082793B /* ContentView.swift in Sources */,
-				1479FEA1271D834A0082793B /* SwinetApp.swift in Sources */,
-				1479FECD271D844F0082793B /* Swinet.swift in Sources */,
+				14DA38302722C44300DCD6A4 /* ViewController.swift in Sources */,
+				14DA385F2722C51A00DCD6A4 /* Swinet.swift in Sources */,
+				14DA382C2722C44300DCD6A4 /* AppDelegate.swift in Sources */,
+				14DA385C2722C51100DCD6A4 /* SwinetExamples.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1479FEAA271D834D0082793B /* Sources */ = {
+		14DA383A2722C44800DCD6A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1479FEB3271D834D0082793B /* SwinetTests.swift in Sources */,
+				14DA38432722C44800DCD6A4 /* SwinetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1479FEB0271D834D0082793B /* PBXTargetDependency */ = {
+		14DA38402722C44800DCD6A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1479FE9C271D83490082793B /* Swinet */;
-			targetProxy = 1479FEAF271D834D0082793B /* PBXContainerItemProxy */;
+			target = 14DA38272722C44300DCD6A4 /* Swinet */;
+			targetProxy = 14DA383F2722C44800DCD6A4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		14DA38312722C44300DCD6A4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14DA38322722C44300DCD6A4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		14DA38362722C44700DCD6A4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				14DA38372722C44700DCD6A4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		1479FEC0271D834D0082793B /* Debug */ = {
+		14DA38502722C44800DCD6A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -291,7 +305,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -301,13 +315,13 @@
 			};
 			name = Debug;
 		};
-		1479FEC1271D834D0082793B /* Release */ = {
+		14DA38512722C44800DCD6A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -346,7 +360,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -356,84 +370,104 @@
 			};
 			name = Release;
 		};
-		1479FEC3271D834D0082793B /* Debug */ = {
+		14DA38532722C44800DCD6A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Swinet/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Swinet/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.Swinet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		1479FEC4271D834D0082793B /* Release */ = {
+		14DA38542722C44800DCD6A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Swinet/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Swinet/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.Swinet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		1479FEC6271D834D0082793B /* Debug */ = {
+		14DA38562722C44800DCD6A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SwinetTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.SwinetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swinet.app/Swinet";
 			};
 			name = Debug;
 		};
-		1479FEC7271D834D0082793B /* Release */ = {
+		14DA38572722C44800DCD6A4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SwinetTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dinhquan.SwinetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swinet.app/Swinet";
@@ -443,34 +477,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1479FE98271D83490082793B /* Build configuration list for PBXProject "Swinet" */ = {
+		14DA38232722C44300DCD6A4 /* Build configuration list for PBXProject "Swinet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1479FEC0271D834D0082793B /* Debug */,
-				1479FEC1271D834D0082793B /* Release */,
+				14DA38502722C44800DCD6A4 /* Debug */,
+				14DA38512722C44800DCD6A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1479FEC2271D834D0082793B /* Build configuration list for PBXNativeTarget "Swinet" */ = {
+		14DA38522722C44800DCD6A4 /* Build configuration list for PBXNativeTarget "Swinet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1479FEC3271D834D0082793B /* Debug */,
-				1479FEC4271D834D0082793B /* Release */,
+				14DA38532722C44800DCD6A4 /* Debug */,
+				14DA38542722C44800DCD6A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1479FEC5271D834D0082793B /* Build configuration list for PBXNativeTarget "SwinetTests" */ = {
+		14DA38552722C44800DCD6A4 /* Build configuration list for PBXNativeTarget "SwinetTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1479FEC6271D834D0082793B /* Debug */,
-				1479FEC7271D834D0082793B /* Release */,
+				14DA38562722C44800DCD6A4 /* Debug */,
+				14DA38572722C44800DCD6A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 1479FE95271D83490082793B /* Project object */;
+	rootObject = 14DA38202722C44300DCD6A4 /* Project object */;
 }

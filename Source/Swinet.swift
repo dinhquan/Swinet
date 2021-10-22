@@ -394,16 +394,19 @@ extension Swinet {
 
         /// Combine
 
+        @available(iOS 13.0.0, *)
         public func publishData(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Data, Error> {
             responsePublisher(on: queue, type: Data.self, converter: { $0 })
         }
 
+        @available(iOS 13.0.0, *)
         public func publishString(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<String, Error> {
             responsePublisher(on: queue, type: String.self) {
                 String(decoding: $0, as: UTF8.self)
             }
         }
 
+        @available(iOS 13.0.0, *)
         public func publishJSON(on queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<Any, Error> {
             responsePublisher(on: queue, type: Any.self) {
                 do {
@@ -414,6 +417,7 @@ extension Swinet {
             }
         }
 
+        @available(iOS 13.0.0, *)
         public func publishDecodable<T: Decodable>(on queue: DispatchQueue = DispatchQueue.main,
                                              _ type: T.Type) -> AnyPublisher<T, Error> {
             responsePublisher(on: queue, type: type) {
@@ -421,6 +425,7 @@ extension Swinet {
             }
         }
 
+        @available(iOS 13.0.0, *)
         func responsePublisher<T>(on queue: DispatchQueue,
                                   type: T.Type,
                                   converter: @escaping (Data) throws -> T) -> AnyPublisher<T, Error>  {

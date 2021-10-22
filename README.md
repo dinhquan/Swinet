@@ -8,7 +8,7 @@ When working with HTTP Networking, the first library developers think about coul
 
 ### CocoaPods
 
-[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Alamofire into your Xcode project using CocoaPods, specify it in your `Podfile`:
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Swinet into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
 pod 'Swinet', '~> 1.0.0'
@@ -16,7 +16,7 @@ pod 'Swinet', '~> 1.0.0'
 
 ### Carthage
 
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Swinet into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
 github "https://github.com/dinhquan/Swinet" ~> 1.0.0
@@ -24,9 +24,9 @@ github "https://github.com/dinhquan/Swinet" ~> 1.0.0
 
 ### Swift Package Manager
 
-The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development, but Alamofire does support its use on supported platforms.
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development, but Swinet does support its use on supported platforms.
 
-Once you have your Swift package set up, adding Alamofire as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
+Once you have your Swift package set up, adding Swinet as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [

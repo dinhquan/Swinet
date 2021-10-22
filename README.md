@@ -52,7 +52,7 @@ struct User: Decodable {
     let email: String
 }
 
-Swinet.request("https://domain.com/login", method: .post, parameters: ["username": "test", "password": "test"])
+Swinet.request("https://domain.com/user", parameters: ["id": "123"])
     .responseDecodable(User.self, success: { user in
         print(user)
     }, failure: { error in
@@ -102,7 +102,7 @@ let body = [
     "password": "quan123"
 ]
 
-Swinet.request("https://httpbin.org/post",
+Swinet.request("https://domain.com/login",
                 method: .post,
                 body: body,
                 headers: headers)
@@ -120,6 +120,7 @@ let formData = Swinet.FormData([
     "name": .string("quan"),
     "avatar": .file(url: URL(string: "<file path>")!)
 ])
+
 Swinet.formDataRequest("https://domain.com/upload", formData: formData)
     .responseJSON { json in
         print(json)
@@ -129,7 +130,7 @@ Swinet.formDataRequest("https://domain.com/upload", formData: formData)
 #### Download File
 
 ```swift
-Swinet.request("https://httpbin.org/file")
+Swinet.request("https://domain.com/file")
     .responseFile(progress: { progress in
         print(progress)
     }, success: { fileUrl in
@@ -154,7 +155,7 @@ query HeroNameAndFriends($episode: String!) {
 """
 let variables = ["episode": "JEDI"]
 
-Swinet.graphQLRequest("https://httpbin.org/graphql", query: query, variables: variables)
+Swinet.graphQLRequest("https://domain.com/graphql", query: query, variables: variables)
     .responseDecodable(User.self, success: { model in
         print(model)
     }, failure: { error in
